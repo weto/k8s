@@ -1,19 +1,18 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  generation: 1
+  annotations:
   labels:
     run: meu-primeiro-deploy
   name: meu-primeiro-deploy
   namespace: default
 spec:
-  progressDeadlineSeconds: 600
+  replicas: 4
   selector:
     matchLabels:
       run: meu-primeiro-deploy
   template:
     metadata:
-      creationTimestamp: null
       labels:
         run: meu-primeiro-deploy
     spec:
@@ -21,7 +20,16 @@ spec:
       - image: nginx
         imagePullPolicy: Always
         name: meu-primeiro-deploy
-        resources: {}
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "500m"
+          requests:
+            memory: 256Mi
+            cpu: "250m"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
