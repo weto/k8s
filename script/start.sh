@@ -1,9 +1,9 @@
 #!/bin/bash
 update=`apt-get update`
-proxy=`ufw disable`
+#proxy=`ufw disable`
 iniciandoDisco=`systemctl daemon-reload`
-desabilitandoSwap=`swapoff -a`
 iniciandoK8s=`systemctl restart kubelet`
+desabilitandoSwap=`swapoff -a`
 echo "######## Iniciando script #######"
 echo "##### Atualizando Raspberry #####"
 echo "$update"
