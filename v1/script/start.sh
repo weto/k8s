@@ -1,18 +1,15 @@
 #!/bin/bash
+echo "######### Script para iniciar o K8S ###########"
+
+echo "############## Atualizando HOST ###############"
 update=`apt-get update`
-#proxy=`ufw disable`
-iniciandoDisco=`systemctl daemon-reload`
-iniciandoK8s=`systemctl restart kubelet`
-desabilitandoSwap=`swapoff -a`
-echo "######## Iniciando script #######"
-echo "##### Atualizando Raspberry #####"
 echo "$update"
-echo "###### desabilitando Proxy ######"
-#echo "$proxy"
-echo "######## Iniciando Disco ########"
-echo "$iniciandoDisco"
-echo "####### DesabilitandoSwap #######"
-echo "$desabilitandoSwap"
-echo "##### Iniciando kubernetes ######"
-echo "$iniciandoK8s"
-echo "####### Finalizado script. ######"
+
+echo "########### Iniciando Kubernetes ##############"
+systemctl daemon-reload
+systemctl restart kubelet
+systemctl restart docker
+
+echo "############ Desabilitando Swap ###############"
+swapoff -a
+echo "####### Kubernetes iniciado. ######"
