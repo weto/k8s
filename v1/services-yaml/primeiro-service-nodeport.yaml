@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: nginx
-  name: nginx
+    run: meu-primeiro-deploy-nodeport
+  name: meu-primeiro-deploy-nodeport
   namespace: default
 spec:
   externalTrafficPolicy: Cluster
@@ -13,7 +13,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    run: nginx
+    run: meu-primeiro-deploy-nodeport
   sessionAffinity: None
   type: NodePort
 status:
