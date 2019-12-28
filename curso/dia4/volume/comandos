@@ -1,0 +1,79 @@
+# kubectl create -f pod-emptydir.yaml
+
+# kubectl get pod
+
+# kubectl exec -ti busybox -c busy -- touch /giropops/funciona
+
+# kubectl exec -ti busybox -c busy -- ls -l /giropops/
+
+# kubectl get pod -o wide
+
+# find /var/lib/kubelet/pods/ -iname giropops-dir
+
+# ls /var/lib/kubelet/pods/7d...kubernetes.io~empty-dir/giropops-dir
+
+# kubectl delete -f pod-emptydir.yaml
+
+# ls /var/lib/kubelet/pods/7d...kubernetes.io~empty-dir/giropops-dir
+
+
+
+
+# apt-get install nfs-kernel-server -y
+
+# sudo yum install nfs-utils -y
+
+# apt-get install -y nfs-common
+
+# mkdir /opt/giropops
+
+# chmod 1777 /opt/giropops/
+
+# vim /etc/exports
+/opt/giropops *(rw,sync,no_root_squash,subtree_check)
+
+# exportfs -ra
+
+# touch /opt/giropops/FUNCIONA
+
+
+
+
+# kubectl create -f primeiro-pv.yaml
+
+# kubectl get pv
+
+# kubectl describe pv primeiro-pv
+
+
+
+
+# kubectl create -f primeiro-pvc.yaml
+
+# kubectl get pv
+
+# kubectl get pvc
+
+
+
+# kubectl create -f nfs-pv.yaml
+
+# kubectl describe deployment nginx
+
+# kubectl get pods -o wide
+
+# kubectl describe pod nginx-b4bd77674-gwc9k
+
+# kubectl exec -ti nginx-b4bd77674-gwc9k -- ls /giropops/
+
+# kubectl exec -ti nginx-b4bd77674-gwc9k -- touch /giropops/STRIGUS
+
+# kubectl exec -ti nginx-b4bd77674-gwc9k -- ls -la  /giropops/
+
+# ls -la /opt/giropops/
+
+# kubectl get deployment
+
+# kubectl delete deployment nginx
+
+#ls -la /opt/giropops/
