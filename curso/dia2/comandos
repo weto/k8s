@@ -1,0 +1,23 @@
+Add-ons:
+https://kubernetes.io/docs/concepts/cluster-administration/networking/
+https://chrislovecnm.com/kubernetes/cni/choosing-a-cni-provider/
+https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+### Comandos para cirar cluster ###
+# kubectl create -f primeiro-service-clusterip.yaml
+
+# kubectl create -f primeiro-service-nodeip.yaml
+
+# kubectl create -f primeiro-service-loadbalancer.yaml
+
+# kubectl edit -f primeiro-service-nodeip.yaml
+
+# kubectl get deploy nginx -o yaml > primeiro-deployment-limitado.yaml
+
+# kubectl exec -ti nginx-limitado-8d767cd5f-lg5xs -- /bin/bash
+
+# kubectl replace -f deployment_limitado.yaml
+
+# kubectl get endpoints
+
+# kubectl describe endpoints nginx-ddswrgb
