@@ -1,0 +1,32 @@
+Descrição do problema: 
+Ao iniciar o cluster o pod network do flannel aparece como crashloopback. O flannel não identifica que pod subiu e fica tentando eternamente subir, com isso causando loop e reiniciando smepre o pod.
+
+Debugando o problema:
+1 - identificando o pod com defeito com co comando abaixo:
+kubectl get pod -n kube-system -w
+
+2 - Pegando o log do pod
+kubectl logs pod/kube-flannel-ds-arm-btmw7 (NOME_POD_PROBLEMA) -n kube-system
+
+3 - Log dO erro encontrado
+E1230 21:50:01.514514       1 main.go:289] Error registering network: failed to configure interface flannel.1: failed to ensure address of interface flannel.1: link has incompatible addresses. Remove additional addresses and try again. &netlink.Vxlan{LinkAttrs:netlink.LinkAttrs{Index:5, MTU:1450, TxQLen:0, Name:"flannel.1", HardwareAddr:net.HardwareAddr{0xa6, 0x5e, 0xa8, 0xfd, 0x1b, 0x6}, Flags:0x13, RawFlags:0x11043, ParentIndex:0, MasterIndex:0, Namespace:interface {}(nil), Alias:"", Statistics:(*netlink.LinkStatistics)(0x122e3104), Promisc:0, Xdp:(*netlink.LinkXdp)(0x123f2190), EncapType:"ether", Protinfo:(*netlink.Protinfo)(nil), OperState:0x0}, VxlanId:1, VtepDevIndex:2, SrcAddr:net.IP{0xc0, 0xa8, 0x0, 0x18}, Group:net.IP(nil), TTL:0, TOS:0, Learning:false, Proxy:false, RSC:false, L2miss:false, L3miss:false, UDPCSum:true, NoAge:false, GBP:false, Age:300, Limit:0, Port:8472, PortLow:0, PortHigh:0}
+
+4 - Descrição da causa do problema:
+ O flanel não identifica que do master não está carrega e fica reiniciando sempre.
+Para resolver excluir o  pod:
+Solução: "ip link delete flannel.1" 
+
+históricos de comandos utilizados:
+493  kubectl get pod -n kube-system -w
+494  kubectl logs pod/kube-flannel-ds-arm-btmw7 -n kube-system
+495  ip addr
+496  ip link delete flannel.1
+497  ip addr
+498  clear
+499  kubectl logs pod/kube-flannel-ds-arm-btmw7 -n kube-system
+500  kubectl get pod -n kube-system -w
+501  kubectl get pod -n kube-system -w
+502  systemctl restart kubelet.service 
+503  kubectl get pod -n kube-system -w
+
+

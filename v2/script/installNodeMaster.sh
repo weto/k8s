@@ -1,6 +1,7 @@
 #!/bin/bash
 # Iniciando o cluster
-kubeadm init --apiserver-advertise-address=192.168.0.20 --node-name $HOSTNAME --pod-network-cidr=10.244.0.0/16
+kubeadm init --apiserver-advertise-address=192.168.0.24 --node-name $HOSTNAME --pod-network-cidr=10.244.0.0/16
+#kubeadm init
 
 # Criando diretórios de Pastas
 mkdir -p $HOME/.kube
