@@ -1,0 +1,26 @@
+ 528  git status
+  529  kubectl get pod -n kube-system -w
+  530  clear
+  531  kubectl get endpoints
+  532  cd curso/
+  533  ls
+  534  cd dia2/
+  535  clear
+  536  ls
+  537  cd NodePort/
+  538  clear
+  539  kubectl get nodes
+  540  ls
+  541  kubectl create -f meu-primeiro-deploy-nodeport.yaml 
+  542  kubectl create -f meu-primeiro-service-nodeport.yaml 
+  543  kubectl get nodes
+  544  kubectl get services
+  545  kubectl get deployments
+  546  kubectl get services
+  547  kubectl get deployments.apps 
+  548  kubectl get endpoints
+  549  clear
+  550  curl http://10.244.1.2:80
+  551  kubectl get services
+  552  clear
+
