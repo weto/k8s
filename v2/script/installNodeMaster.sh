@@ -1,6 +1,10 @@
 #!/bin/bash
+#Desabilitando Swap
+swapoff -a && sudo sed -i '/ swap / s/^/#/' /etc/fstab
+
 # Iniciando o cluster
-kubeadm init --apiserver-advertise-address=192.168.0.24 --node-name $HOSTNAME --pod-network-cidr=10.244.0.0/16
+IP_MASTER=$1
+kubeadm init --apiserver-advertise-address=$IP_MASTER --node-name $HOSTNAME --pod-network-cidr=10.244.0.0/16
 #kubeadm init
 
 # Criando diretórios de Pastas
