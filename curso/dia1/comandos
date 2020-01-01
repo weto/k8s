@@ -89,3 +89,5 @@ ip_vs
 # kubectl get pods -o wide
 
 # kubectl delete pods nginx-6f858d4d45-qxjlh
+#
+# kubectl scale --replicas=NUMERO_REPLICA deployment NOME_DEPLOY
