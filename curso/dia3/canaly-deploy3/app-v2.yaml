@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: app
+  name: app-v2
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mbr
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mbr
+    spec:
+      containers:
+      - image: nginx:1.15.0
+        name: mbr
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
