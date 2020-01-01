@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: giropops
+    run: app
+  name: meu-segundo-service-canaly
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 30000
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: app
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
