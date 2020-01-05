@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limit-pod-sem-namespace
+spec:
+  containers:
+  - name: limitado-pod
+    image: nginx

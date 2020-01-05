@@ -1,0 +1,23 @@
+## Criar arquivo yaml ## 
+1  vim namespace-limitado-1cp-100mi.yaml
+2  kubectl create -f LimitePorLinhaComando/namespace-limitado-1cp-100mi
+  
+## Criando namespace baseado no namespace giropops ##
+1  kubectl create -f LimitePorLinhaComando/namespace-limitado-1cp-100mi -n giropops 
+
+## Criar arquivo yaml do pod ##
+1 vim  meu-primeiro-pod-com-namespace-fixo.yaml
+
+## Criando Pod com namespace informando configuração no yaml ##
+1 kubectl create -f meu-primeiro-pod-com-namespace-fixo.yaml 
+
+## Criar Pod com namespace informando configuração na linha de comando ##
+1  vim  meu-primeiro-pod-sem-namespace.yaml 
+2  kubectl create -f meu-primeiro-pod-sem-namespace.yaml -n giropops 
+
+## Identificando o ip do Pod ##
+1  kubectl get pods -n giropops 
+2  kubectl describe pods -n giropops
+
+## Dando curl no Pod ## 
+1  curl http://10.244.1.11

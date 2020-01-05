@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limit-pod-com-namespace-fixo
+  namespace: giropops
+spec:
+  containers:
+  - name: pod-limitado-por-namespace
+    image: nginx
