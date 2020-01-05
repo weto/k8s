@@ -1,0 +1,4 @@
+Para acessar o serviço pelo ip e porta em todos os nodes:
+1 - Desabilitar swap
+2 - liberar proxy
+3 - reiniciar kubelet e docker
