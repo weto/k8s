@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: meu-primeiro-service-limitado
+  name: meu-primeiro-service-limitado
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 30000
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: meu-primeiro-deploy-limitado
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  generation: 1
+  labels:
+    run: meu-primeiro-deploy-limitado
+  name: meu-primeiro-deploy-limitado
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: meu-primeiro-deploy-limitado
+  template:
+    metadata:
+      labels:
+        run: meu-primeiro-deploy-limitado
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: meu-primeiro-deploy-limitado
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 1
+          requests:
+            memory: 96Mi
+            cpu: 1
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

@@ -1,0 +1,28 @@
+## Criando deploy ##
+1 kubectl create -f meu-primeiro-deploy-limitado.yaml
+
+## Criando service ##
+kubectl create -f meu-primeiro-service-limitado.yaml..
+
+## listando os pods ##
+1 kubectl get pods
+
+## todos os pods rodando ##
+NAME                                            READY   STATUS    RESTARTS   AGE
+meu-primeiro-deploy-limitado-556545995d-47bh2   1/1     Running   0          28m
+meu-primeiro-deploy-limitado-556545995d-5zfjc   1/1     Running   0          24m
+meu-primeiro-deploy-limitado-556545995d-6ftpc   1/1     Running   0          28m
+meu-primeiro-deploy-limitado-556545995d-m784q   1/1     Running   0          47m
+meu-primeiro-deploy-limitado-556545995d-qzp4m   1/1     Running   0          28m
+meu-primeiro-deploy-limitado-556545995d-wmwzz   1/1     Running   0          28m
+
+## Entrando no pod e fazendo teste de carga ##
+1  apt-get update
+2  apt-get install -y stress (instalando o componente de teste de stress)
+3  stress --vm 1 --vm-bytes 128M (nao vai subir pois foi determinado do deployment o limit de 128)
+4  stress --vm 1 --vm-bytes 100M (vai subir)
+5  stress --vm 1 --vm-bytes 120M (vai subir)
+6  stress --vm 1 --vm-bytes 126M (nao vai subir)
+7  stress --vm 1 --vm-bytes 125M (nao vai subir)
+8  stress --vm 1 --vm-bytes 124M (nao vai subir)
+9  stress --vm 1 --vm-bytes 123M (nao vai subir)
