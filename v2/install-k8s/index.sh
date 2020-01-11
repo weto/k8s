@@ -30,3 +30,14 @@ echo "$addDependencia"
 updateSO=`apt-get update`
 echo "########## Atualizando o Raspberry ###########"
 echo "$updateSO"
+
+echo "######### Desabilitando Swap ##########"
+disableSwap=`swapoff -a`
+echo "############# Desabilitando Swap ##############"
+echo "$disableSwap"
+
+echo "######## Iniciando processo de instalacao kubernetes #########"
+installk8s=`apt-get install kubelet kubeadm kubectl -y`
+echo "########### Instalando o kubernetes ###########"
+echo "$installK8s"
+
