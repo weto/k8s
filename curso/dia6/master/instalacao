@@ -1,0 +1,21 @@
+Existe hj 2 formas de configurar o multmaster com o kubernetes:
+ - Junto com etcd (controlplane) ou etcd separado.
+ - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/
+
+Criar exemplo com o etcd junto.
+
+Requisitos:
+ - https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+ - fazer instalação do docker
+ - fazer instalação do kubernetes
+
+Configurando o haproxy no kubernetes:
+ - vim /etc/hosts
+ - 172.31.18.156 (IP da máquina haproxy) k8s-haproxy // Add alias da máquina haproxy
+ - ping k8s-master
+
+
+Iniciando o cluster com multimaster:
+ - sudo kubeadm init --control-plane-endpoint "k8s-haproxy:6443" --upload-certs
+
+Ao iniciar o kubernetes será liberado mais de 1 join de maquinas onde 1 será responsável por add node master e o outro para add node worker.

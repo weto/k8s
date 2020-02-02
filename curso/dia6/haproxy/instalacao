@@ -1,0 +1,46 @@
+Descrição:
+ - Cluster com 7 máquinas, onde 3 serão master, 3 serão worker e 1 com haproxy (balancemento)
+ - Configurar All-traffic para deixar todas as máquinas da mesma rede (securite group) conversarem entre si.
+
+
+Instalando 1 máquina para fazer o balanceamento do cluster
+Requisitos:
+ - 1 GB de memória RAM e 1 processador
+
+Comandos da instalação:
+  sudo su -
+  hostname k8s-haproxy
+  echo "k8s-haproxy" > /etc/hostname
+  apt-get update
+  apt-get install -y haproxy
+
+Configurando o HAProxy (rotas):
+  vim /etc/haproxy/haproxy.cfg
+
+criar conteúdo abaixo:
+ - frontend kubernetes
+     mode tcp
+     bind 172.31.18.156 (IP da maquina do haproxy):6443  
+     option icplog
+     default_backend k8s-masters (nome qualquer que desejar)
+
+ - backend k8s-masters
+     node tcp
+     balance roundrobin
+     option tcp-check
+     server k8s-master-0 172.31.23.131 (IP privado da maquina 1 maste) :6443 check fall 3 rise 2 
+     server k8s-master-1 172.31.23.132 (IP privado da maquina 2 maste) :6443 check fall 3 rise 2
+     server k8s-master-2 172.31.23.133 (IP privado da maquina 3 maste) :6443 check fall 3 rise 2
+
+Comandos para reiniciar os serviços:
+  systemctl restart haproxy
+  systemctl status haproxy
+
+Listando logs:
+ - tail -f /var/log/haproxy.log	
+
+Listando portas abertas (6443):
+ - netstat -atunp 
+
+
+
