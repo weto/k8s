@@ -3,12 +3,15 @@
 #swap_off=`wapoff -a && sudo sed -i '/ swap / s/^/#/' /etc/fstab`
 #echo "$swap_off"
 
+# Atualizando repositório de imagens
+echo "Atualizando imagens"
+kubeadm config images pull
+
 # Iniciando o cluster
-IP_MASTER=$1
+#IP_MASTER=$1
 #kubeadmInit=`kubeadm init --apiserver-advertise-address=$IP_MASTER --node-name $HOSTNAME --pod-network-cidr=10.244.0.0/16`
 kubeadmInit=`kubeadm init --pod-network-cidr=10.244.0.0/16`
 echo "$kubeadmInit"
-#kubeadm init
 
 # Criando diretórios de Pastas
 pastaKube=`mkdir -p $HOME/.kube`
