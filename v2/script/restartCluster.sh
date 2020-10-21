@@ -1,6 +1,6 @@
 #!/bin/bash
 #desabilitando swap
-flannelInstall=`swapoff -a`
+swapoff -a
 
 #reiniciando cluster
 systemctl daemon-reload
